@@ -90,8 +90,8 @@
         <mxCell id="bLs9IsvR2o_hPNLltjXx-50" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="bLs9IsvR2o_hPNLltjXx-8" source="bLs9IsvR2o_hPNLltjXx-26" target="bLs9IsvR2o_hPNLltjXx-48">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="bLs9IsvR2o_hPNLltjXx-60" value="&lt;div&gt;stm_contractgeb_mld&lt;/div&gt;&lt;div&gt;stm_tao_soort_mutatie&lt;/div&gt;&lt;div&gt;stm_aangeb_dd&lt;/div&gt;&lt;div&gt;stm_fh_status&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="bLs9IsvR2o_hPNLltjXx-8">
-          <mxGeometry x="470" y="75" width="60" height="30" as="geometry" />
+        <mxCell id="bLs9IsvR2o_hPNLltjXx-60" value="&lt;div&gt;stm_contractgeb_mld&lt;/div&gt;&lt;div&gt;stm_tao_soort_mutatie&lt;/div&gt;&lt;div&gt;stm_aangeb_dd&lt;/div&gt;&lt;div&gt;stm_fh_status&lt;/div&gt;&lt;div&gt;stm_progfh_in_datum&lt;br&gt;&lt;/div&gt;&lt;div&gt;stm_progfh_in_invoer_dat&lt;br&gt;&lt;/div&gt;&lt;div&gt;stm_progfh_in_tijd&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="bLs9IsvR2o_hPNLltjXx-8">
+          <mxGeometry x="470" y="45" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="bLs9IsvR2o_hPNLltjXx-61" value="stm_sap_storeinddatum&lt;div&gt;stm_dstrglp_van&lt;/div&gt;&lt;div&gt;stm_dstrglp_naar&lt;/div&gt;&lt;div&gt;stm_tao_indicator_vorige&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="bLs9IsvR2o_hPNLltjXx-8">
           <mxGeometry x="680" y="30" width="60" height="30" as="geometry" />
