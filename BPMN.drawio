@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36 OPR/113.0.0.0" version="24.8.0">
   <diagram id="prtHgNgQTEPvFCAcTncT" name="Page-1">
-    <mxGraphModel dx="793" dy="452" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="530" dy="521" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -32,6 +32,12 @@
         </mxCell>
         <mxCell id="bLs9IsvR2o_hPNLltjXx-52" value="treinen rijden weer" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;fontColor=#000000;align=center;" vertex="1" parent="dNxyNK7c78bLwvsdeMH5-20">
           <mxGeometry x="570" y="30" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bLs9IsvR2o_hPNLltjXx-58" value="stm_geo_mld&lt;div&gt;stm_oorz_code&lt;/div&gt;&lt;div&gt;stm_oorz_groep&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="dNxyNK7c78bLwvsdeMH5-20">
+          <mxGeometry x="220" y="40" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bLs9IsvR2o_hPNLltjXx-61" value="stm_sap_storeinddatum&lt;div&gt;stm_dstrglp_van&lt;/div&gt;&lt;div&gt;stm_dstrglp_naar&lt;/div&gt;&lt;div&gt;stm_tao_indicator_vorige&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="dNxyNK7c78bLwvsdeMH5-20">
+          <mxGeometry x="470" y="40" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="dNxyNK7c78bLwvsdeMH5-21" value="planner" style="swimlane;html=1;startSize=20;horizontal=0;" parent="dNxyNK7c78bLwvsdeMH5-19" vertex="1">
           <mxGeometry x="20" y="120" width="730" height="100" as="geometry" />
@@ -66,6 +72,9 @@
         <mxCell id="bLs9IsvR2o_hPNLltjXx-57" value="ons model" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="bLs9IsvR2o_hPNLltjXx-4">
           <mxGeometry x="420" y="20" width="60" height="30" as="geometry" />
         </mxCell>
+        <mxCell id="bLs9IsvR2o_hPNLltjXx-59" value="stm_fh_ddt&lt;div&gt;stm_aangeb_ddt&lt;br&gt;&lt;/div&gt;&lt;div&gt;stm_fh_status&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="bLs9IsvR2o_hPNLltjXx-4">
+          <mxGeometry x="40" y="70" width="60" height="30" as="geometry" />
+        </mxCell>
         <mxCell id="bLs9IsvR2o_hPNLltjXx-7" value="Aannemer&amp;nbsp;" style="swimlane;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;horizontal=0;startSize=20;horizontalStack=0;html=1;" vertex="1" parent="1">
           <mxGeometry x="120" y="570" width="750" height="120" as="geometry" />
         </mxCell>
@@ -76,13 +85,16 @@
           <mxGeometry x="230" y="30" width="80" height="60" as="geometry" />
         </mxCell>
         <mxCell id="bLs9IsvR2o_hPNLltjXx-35" value="fix het probleem" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;fontColor=#000000;align=center;" vertex="1" parent="bLs9IsvR2o_hPNLltjXx-8">
-          <mxGeometry x="480" y="30" width="80" height="60" as="geometry" />
+          <mxGeometry x="560" y="15" width="80" height="60" as="geometry" />
         </mxCell>
         <mxCell id="bLs9IsvR2o_hPNLltjXx-48" value="prognose&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;fontColor=#000000;align=center;" vertex="1" parent="bLs9IsvR2o_hPNLltjXx-8">
           <mxGeometry x="350" y="30" width="80" height="60" as="geometry" />
         </mxCell>
         <mxCell id="bLs9IsvR2o_hPNLltjXx-50" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="bLs9IsvR2o_hPNLltjXx-8" source="bLs9IsvR2o_hPNLltjXx-26" target="bLs9IsvR2o_hPNLltjXx-48">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bLs9IsvR2o_hPNLltjXx-60" value="&lt;div&gt;stm_contractgeb_mld&lt;/div&gt;&lt;div&gt;stm_tao_soort_mutatie&lt;/div&gt;&lt;div&gt;stm_aangeb_dd&lt;/div&gt;&lt;div&gt;stm_fh_status&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="bLs9IsvR2o_hPNLltjXx-8">
+          <mxGeometry x="470" y="30" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="bLs9IsvR2o_hPNLltjXx-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="dNxyNK7c78bLwvsdeMH5-28" target="bLs9IsvR2o_hPNLltjXx-13">
           <mxGeometry relative="1" as="geometry" />
@@ -120,6 +132,10 @@
         <mxCell id="bLs9IsvR2o_hPNLltjXx-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="bLs9IsvR2o_hPNLltjXx-35" target="bLs9IsvR2o_hPNLltjXx-52">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="760" y="660" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="750" y="490" />
+              <mxPoint x="750" y="490" />
+            </Array>
           </mxGeometry>
         </mxCell>
       </root>
