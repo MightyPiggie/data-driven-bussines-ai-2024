@@ -8,6 +8,8 @@ from sklearn.neural_network import MLPClassifier #https://scikit-learn.org/stabl
 from lineartree import LinearTreeClassifier, LinearForestClassifier, LinearBoostClassifier #https://github.com/cerlymarco/linear-tree
 from sklearn.linear_model import RidgeClassifier, Ridge
 from sklearn.multiclass import OneVsRestClassifier
+from sklearn.metrics import log_loss
+import numpy as np
 import warnings
 warnings.simplefilter('ignore')
 
@@ -28,4 +30,6 @@ def train_models(models, X_train, X_test, y_train, y_test):
     for name, model in models.items():
         model.fit(X_train, y_train)
         score = model.score(X_test, y_test)
-        print(f"{name} - {score}")
+        proba = model.predict_proba(X_test)
+        log_loss_proba = log_loss(y_test, proba)
+        print(f"{name} - {score} - {log_loss_proba}")
