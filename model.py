@@ -26,7 +26,6 @@ models = {
     "LinearForestClassifier": OneVsRestClassifier(LinearForestClassifier(Ridge(), max_features="sqrt")),
     "LinearBoostClassifier": LinearBoostClassifier(base_estimator=RidgeClassifier()),
     "VotingClassifier": VotingClassifier(estimators=[("BC", BaggingClassifier()), ("RFC", RandomForestClassifier()),("LFC", OneVsRestClassifier(LinearForestClassifier(Ridge(), max_features="sqrt")))], voting="soft"),
-    "SVC": SVC(probability=True),
     "DecisionTreeClassifier": DecisionTreeClassifier()
 }
 
