@@ -11,21 +11,22 @@ from sklearn.tree import DecisionTreeClassifier #https://scikit-learn.org/stable
 from sklearn.linear_model import RidgeClassifier, Ridge
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.metrics import log_loss
+from sklearn.model_selection import ParameterGrid
 import numpy as np
 import warnings
 warnings.simplefilter('ignore')
 
 models = {
-    "BaggingClassifier": BaggingClassifier(),
-    "RandomForestClassifier": RandomForestClassifier(),
-    "ExtraTreesClassifier": ExtraTreesClassifier(),
+    "BaggingClassifier": BaggingClassifier(n_jobs=4),
+    "RandomForestClassifier": RandomForestClassifier(n_jobs=4),
+    "ExtraTreesClassifier": ExtraTreesClassifier(n_jobs=4),
     "GaussianNB": GaussianNB(),
-    "NearestNeighborsClassifier": KNeighborsClassifier(),
+    "NearestNeighborsClassifier": KNeighborsClassifier(n_jobs=4),
     "MLPClassifier": MLPClassifier(),
-    "LinearTreeClassifier": LinearTreeClassifier(base_estimator=RidgeClassifier()),
-    "LinearForestClassifier": OneVsRestClassifier(LinearForestClassifier(Ridge(), max_features="sqrt")),
+    "LinearTreeClassifier": LinearTreeClassifier(base_estimator=RidgeClassifier(), n_jobs=4),
+    "LinearForestClassifier": OneVsRestClassifier(LinearForestClassifier(Ridge(), max_features="sqrt"), n_jobs=4),
     "LinearBoostClassifier": LinearBoostClassifier(base_estimator=RidgeClassifier()),
-    "VotingClassifier": VotingClassifier(estimators=[("BC", BaggingClassifier()), ("RFC", RandomForestClassifier()),("LFC", OneVsRestClassifier(LinearForestClassifier(Ridge(), max_features="sqrt")))], voting="soft"),
+    "VotingClassifier": VotingClassifier(estimators=[("BC", BaggingClassifier()), ("RFC", RandomForestClassifier()),("LFC", OneVsRestClassifier(LinearForestClassifier(Ridge(), max_features="sqrt")))], voting="soft", n_jobs=4),
     "DecisionTreeClassifier": DecisionTreeClassifier()
 }
 
@@ -40,3 +41,6 @@ def train_models(models, X_train, X_test, y_train, y_test):
             print(f"{name} - {score} - {log_loss_proba}")
         else:
             print(f"{name} - {score}")
+
+# BC_Parameters = {'estimator': [LinearTreeClassifier(base_estimator=RidgeClassifier()), OneVsRestClassifier(LinearForestClassifier(Ridge(), max_features="sqrt")), RandomForestClassifier(), ExtraTreesClassifier(), MLPClassifier(), KNeighborsClassifier(), GaussianNB()], 'n_estimators': [10, 50, 100], 'max_samples': [0.5, 1.0], 'max_features': [0.5, 1.0], 'bootstrap': [True, False], 'bootstrap_features': [True, False], 'random_state': [42]}
+# print(len(list(ParameterGrid(BC_Parameters))))
