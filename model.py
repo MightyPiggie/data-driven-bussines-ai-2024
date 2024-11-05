@@ -12,28 +12,36 @@ from sklearn.linear_model import RidgeClassifier, Ridge
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.metrics import log_loss
 from sklearn.model_selection import ParameterGrid
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder
 import numpy as np
+from joblib import dump, load
+import os.path
 import warnings
 warnings.simplefilter('ignore')
 
 models = {
-    "BaggingClassifier": BaggingClassifier(n_jobs=4),
-    "RandomForestClassifier": RandomForestClassifier(n_jobs=4),
-    "ExtraTreesClassifier": ExtraTreesClassifier(n_jobs=4),
-    "GaussianNB": GaussianNB(),
-    "NearestNeighborsClassifier": KNeighborsClassifier(n_jobs=4),
-    "MLPClassifier": MLPClassifier(),
-    "LinearTreeClassifier": LinearTreeClassifier(base_estimator=RidgeClassifier(), n_jobs=4),
-    "LinearForestClassifier": OneVsRestClassifier(LinearForestClassifier(Ridge(), max_features="sqrt"), n_jobs=4),
-    "LinearBoostClassifier": LinearBoostClassifier(base_estimator=RidgeClassifier()),
-    "VotingClassifier": VotingClassifier(estimators=[("BC", BaggingClassifier()), ("RFC", RandomForestClassifier()),("LFC", OneVsRestClassifier(LinearForestClassifier(Ridge(), max_features="sqrt")))], voting="soft", n_jobs=4),
-    "DecisionTreeClassifier": DecisionTreeClassifier()
+    "BaggingClassifier": Pipeline([('ohe', OneHotEncoder(sparse_output=False, handle_unknown='ignore').set_output(transform="pandas")), ('bc', BaggingClassifier())]),
+    "RandomForestClassifier": Pipeline([('ohe', OneHotEncoder(sparse_output=False, handle_unknown='ignore').set_output(transform="pandas")), ('RFC', RandomForestClassifier())]),
+    "ExtraTreesClassifier": Pipeline([('ohe', OneHotEncoder(sparse_output=False, handle_unknown='ignore').set_output(transform="pandas")), ('ETC', ExtraTreesClassifier())]),
+    "GaussianNB": Pipeline([('ohe', OneHotEncoder(sparse_output=False, handle_unknown='ignore').set_output(transform="pandas")), ('GNB', GaussianNB())]),
+    "NearestNeighborsClassifier": Pipeline([('ohe', OneHotEncoder(sparse_output=False, handle_unknown='ignore').set_output(transform="pandas")), ('KNC', KNeighborsClassifier())]),
+    "MLPClassifier": Pipeline([('ohe', OneHotEncoder(sparse_output=False, handle_unknown='ignore').set_output(transform="pandas")), ('MLPC', MLPClassifier())]),
+    "LinearTreeClassifier": Pipeline([('ohe', OneHotEncoder(sparse_output=False, handle_unknown='ignore').set_output(transform="pandas")), ('LTC', LinearTreeClassifier(base_estimator=RidgeClassifier()))]),
+    "LinearForestClassifier": Pipeline([('ohe', OneHotEncoder(sparse_output=False, handle_unknown='ignore').set_output(transform="pandas")), ('LFC', OneVsRestClassifier(LinearForestClassifier(Ridge(), max_features="sqrt")))]),
+    "LinearBoostClassifier": Pipeline([('ohe', OneHotEncoder(sparse_output=False, handle_unknown='ignore').set_output(transform="pandas")), ('LBC', LinearBoostClassifier(base_estimator=RidgeClassifier()))]),
+    "VotingClassifier": Pipeline([('ohe', OneHotEncoder(sparse_output=False, handle_unknown='ignore').set_output(transform="pandas")), ('VC', VotingClassifier(estimators=[("BC", BaggingClassifier()), ("RFC", RandomForestClassifier()),("LFC", OneVsRestClassifier(LinearForestClassifier(Ridge(), max_features="sqrt")))], voting="soft"))]),
+    "DecisionTreeClassifier": Pipeline([('ohe', OneHotEncoder(sparse_output=False, handle_unknown='ignore').set_output(transform="pandas")), ('DTC', DecisionTreeClassifier())])
 }
 
 def train_models(models, X_train, X_test, y_train, y_test):
     print("Training models...")
     for name, model in models.items():
-        model.fit(X_train, y_train)
+        if not os.path.isfile(f"models/{name}.joblib"):
+            model.fit(X_train, y_train)
+            dump(model, f"models/{name}.joblib")
+        else:
+            model = load(f"models/{name}.joblib")
         score = model.score(X_test, y_test)
         if hasattr(model, "predict_proba"):
             proba = model.predict_proba(X_test)
