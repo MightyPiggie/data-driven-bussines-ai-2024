@@ -11,6 +11,9 @@ from PySide6.QtCore import QTimer
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 
+from joblib import load
+import sklearn as sk
+
 with open('datasets/geocodes.csv') as csvfile:
     reader = csv.reader(csvfile, delimiter=';')
     geocodes = list(reader)
@@ -47,7 +50,8 @@ with open('datasets/techniekvelden.csv') as csvfile:
     # window.show()
 
     # app.exec()
-    
+
+model = load(f"models/VotingClassifier.joblib")
 
 
 
@@ -64,7 +68,7 @@ class App(QWidget):
 
     def __init__(self, parent=None):
         super(App, self).__init__(parent)
-        
+        self.setGeometry(100, 100, 1200, 800)
         self.formLayout = QtWidgets.QFormLayout()
         # formLayout = QtWidgets.QFormLayout()
         self.stm_geo_mld = QtWidgets.QComboBox()
@@ -89,35 +93,46 @@ class App(QWidget):
         self.layout.addLayout(self.formLayout)
         
         self.canvas = MplCanvas(self, width=5, height=4, dpi=100)
+        self.canvas.axes.set_position([0.1, 0.3, 0.8, 0.6])  # Adjust the position to give more space at the bottom
+
         self.layout.addWidget(self.canvas)
         # self.formLayout.addRow(self.canvas)
         self.setLayout(self.layout)
         # self.setCentralWidget(self.canvas)
 
-        n_data = 50
-        self.xdata = list(range(n_data))
-        self.ydata = [random.randint(0, 10) for i in range(n_data)]
-        self.update_plot()
+        # n_data = 50
+        # self.xdata = list(range(n_data))
+        # self.ydata = [random.randint(0, 10) for i in range(n_data)]
+        # self.update_plot()
 
         self.show()
 
         # Setup a timer to trigger the redraw by calling update_plot.
-        self.timer = QTimer()
-        self.timer.setInterval(100)
-        self.timer.timeout.connect(self.update_plot)
-        self.timer.start()
+        # self.timer = QTimer()
+        # self.timer.setInterval(100)
+        # self.timer.timeout.connect(self.update_plot)
+        # self.timer.start()
 
     def update_plot(self):
-        # Drop off the first y element, append a new one.
-        self.ydata = self.ydata[1:] + [random.randint(0, 10)]
+        x_data = [300, 840, 1499, 2220, 2940, 3722.1, 5280, 7619, 10155, 13440, 16675.56, 22500, 28800]
+        x_data2 = [i for i in range(1, len(x_data))]
+        x_data3 = [i for i in range(len(x_data)+1)]
+        print(self.result)
+        self.result = self.result[0]  # Assuming the result is a 2D array and we need the first row
         self.canvas.axes.cla()  # Clear the canvas.
-        self.canvas.axes.plot(self.xdata, self.ydata, 'r')
-        # Trigger the canvas to update and redraw.
+        self.canvas.axes.hist(x_data2, bins=x_data3, weights=self.result, align='left', rwidth=0.9, ec='red')
+        self.canvas.axes.set_xticks(x_data2)
+        self.canvas.axes.set_xticklabels([f"{x_data[i]}-{x_data[i+1]}" for i in range(len(x_data)-1)], rotation=45, ha='center')
+        self.canvas.axes.set_xlabel('Range')
+        self.canvas.axes.set_ylabel('Probability')
+        self.canvas.axes.set_title('Predicted Probabilities')
         self.canvas.draw()
         
     def on_submit(self):
         print("submit")
         print(self.stm_geo_mld.currentText(), self.stm_prioriteit.currentText(), self.stm_oorz_code.currentText(), self.stm_contractgeb_gst.currentText(), self.stm_techn_mld.currentText())
+        self.result = model.predict_proba([[self.stm_geo_mld.currentText(), self.stm_prioriteit.currentText(), self.stm_oorz_code.currentText(), self.stm_contractgeb_gst.currentText(), self.stm_techn_mld.currentText()]])
+        self.update_plot()
 
 
 app = QApplication(sys.argv)
