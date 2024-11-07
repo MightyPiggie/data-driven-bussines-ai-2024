@@ -55,7 +55,6 @@ class App(QWidget):
         super(App, self).__init__(parent)
         self.setGeometry(100, 100, 1200, 800)
         self.formLayout = QtWidgets.QFormLayout()
-        # formLayout = QtWidgets.QFormLayout()
         self.stm_geo_mld = QtWidgets.QComboBox()
         self.stm_geo_mld.addItems(geocodes)
         self.stm_prioriteit = QtWidgets.QComboBox()
@@ -91,7 +90,7 @@ class App(QWidget):
         x_data3 = [i for i in range(len(x_data)+1)]
         print(self.result)
         self.result = self.result[0]  # Assuming the result is a 2D array and we need the first row
-        self.canvas.axes.cla()  # Clear the canvas.
+        self.canvas.axes.cla()
         self.canvas.axes.hist(x_data2, bins=x_data3, weights=self.result, align='left', rwidth=0.9, ec='red')
         self.canvas.axes.set_xticks(x_data2)
         self.canvas.axes.set_xticklabels([f"{x_data[i]}-{x_data[i+1]}" for i in range(len(x_data)-1)], rotation=45, ha='center')
