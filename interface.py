@@ -1,12 +1,10 @@
-from PySide6 import QtCore, QtWidgets
+from PySide6 import QtWidgets
 import csv
-import random
 import sys
 import matplotlib
 matplotlib.use('Qt5Agg')
 
-from PySide6.QtWidgets import QMainWindow, QApplication, QWidget, QVBoxLayout
-from PySide6.QtCore import QTimer
+from PySide6.QtWidgets import QApplication, QWidget, QVBoxLayout
 
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
@@ -37,19 +35,6 @@ with open('datasets/techniekvelden.csv') as csvfile:
     techniekvelden = list(reader)
     techniekvelden = [techniekvelde[1] for techniekvelde in techniekvelden]
     techniekvelden = techniekvelden[1:]
-
-# print(techniekvelden)
-    
-
-# if __name__ == '__main__':
-    
-    # app = QtWidgets.QApplication([])
-    # window = QtWidgets.QWidget()
-    
-    # window.setLayout(formLayout)
-    # window.show()
-
-    # app.exec()
 
 model = load(f"models/VotingClassifier.joblib")
 
@@ -96,22 +81,9 @@ class App(QWidget):
         self.canvas.axes.set_position([0.1, 0.3, 0.8, 0.6])  # Adjust the position to give more space at the bottom
 
         self.layout.addWidget(self.canvas)
-        # self.formLayout.addRow(self.canvas)
         self.setLayout(self.layout)
-        # self.setCentralWidget(self.canvas)
-
-        # n_data = 50
-        # self.xdata = list(range(n_data))
-        # self.ydata = [random.randint(0, 10) for i in range(n_data)]
-        # self.update_plot()
 
         self.show()
-
-        # Setup a timer to trigger the redraw by calling update_plot.
-        # self.timer = QTimer()
-        # self.timer.setInterval(100)
-        # self.timer.timeout.connect(self.update_plot)
-        # self.timer.start()
 
     def update_plot(self):
         x_data = [300, 840, 1499, 2220, 2940, 3722.1, 5280, 7619, 10155, 13440, 16675.56, 22500, 28800]
